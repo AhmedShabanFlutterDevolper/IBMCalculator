@@ -1,7 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
-import 'Colors.dart';
+import '../../style/Colors.dart';
+import 'package:share_plus/share_plus.dart';
 
 class HomeScrean extends StatefulWidget {
   const HomeScrean({super.key});
@@ -14,6 +18,13 @@ bool isMale = false;
 double valueHeight = 120.0;
 int weight = 40;
 int age = 20;
+var result = weight / pow(valueHeight / 100, 2);
+String message = ''' 
+My age is ; $age 
+I amm my Weight  : $weight
+My Height : $valueHeight 
+BIM : $result
+''';
 
 class _HomeScreanState extends State<HomeScrean> {
   @override
@@ -199,10 +210,10 @@ class _HomeScreanState extends State<HomeScrean> {
                             Text(
                               'WEIGHT',
                               style: TextStyle(
-                                  fontSize: 20.0,
-                                  color: TextColor,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'titleAgeAndHeightFont'),
+                                fontSize: 26.0,
+                                color: TextColor,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             SizedBox(
                               height: 20,
@@ -272,10 +283,10 @@ class _HomeScreanState extends State<HomeScrean> {
                             Text(
                               'AGE',
                               style: TextStyle(
-                                  fontSize: 40.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: TextColor,
-                                  fontFamily: 'titleAgeAndHeightFont'),
+                                fontSize: 40.0,
+                                fontWeight: FontWeight.bold,
+                                color: TextColor,
+                              ),
                             ),
                             Text(
                               '$age',
@@ -330,10 +341,275 @@ class _HomeScreanState extends State<HomeScrean> {
                   ],
                 ),
               ),
+              SizedBox(
+                height: 30,
+              ),
+              Container(
+                height: 100,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(20)),
+                child: MaterialButton(
+                  onPressed: () {
+                    _settingModalBottomSheet(context);
+                  },
+                  child: Text(
+                    'CALCULATE',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 30,
+                      fontFamily: 'TitleTextFont',
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),
       ),
     );
   }
+}
+
+void _settingModalBottomSheet(context) {
+  showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          color: BackGroundColor,
+          height: 700,
+          child: Padding(
+            padding: const EdgeInsets.all(30.0),
+            child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        'Gender : ',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            color: TextColor,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w800,
+                            fontFamily: 'MORFFont'),
+                      ),
+                      Spacer(),
+                      Text(
+                        '${isMale ? 'Male' : 'Female'}',
+                        style: TextStyle(
+                            color: Colors.amber,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Container(
+                      height: 3,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(30)),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        ' Age : ',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            color: TextColor,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w800,
+                            fontFamily: 'MORFFont'),
+                      ),
+                      Spacer(),
+                      Text(
+                        '$age',
+                        style: TextStyle(
+                            color: Colors.amber,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Container(
+                      height: 3,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(30)),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        ' Weight : ',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            color: TextColor,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w800,
+                            fontFamily: 'MORFFont'),
+                      ),
+                      Spacer(),
+                      Text(
+                        '$weight',
+                        style: TextStyle(
+                            color: Colors.amber,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Container(
+                      height: 3,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(30)),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        ' Height : ',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            color: TextColor,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w800,
+                            fontFamily: 'MORFFont'),
+                      ),
+                      Spacer(),
+                      Expanded(
+                        child: Text(
+                          '$valueHeight',
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              color: Colors.amber,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Container(
+                      height: 3,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(30)),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        ' BIM : ',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            color: TextColor,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w800,
+                            fontFamily: 'MORFFont'),
+                      ),
+                      Spacer(),
+                      Expanded(
+                        child: Text(
+                          '$result',
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              color: Colors.amber,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20, top: 20),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                              height: 100,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(50),
+                                    bottomLeft: Radius.circular(50),
+                                  ),
+                                  color: Colors.red),
+                              child: Padding(
+                                padding: const EdgeInsets.all(25.0),
+                                child: Center(
+                                  child: Text(
+                                    'Closed',
+                                    style: TextStyle(
+                                      fontFamily: 'MORFFont',
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 25,
+                                      color: TextColor,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () {
+                              Share.share(message);
+                            },
+                            child: Container(
+                              height: 100,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(50),
+                                    bottomRight: Radius.circular(50),
+                                  ),
+                                  color: Colors.grey),
+                              child: Padding(
+                                padding: const EdgeInsets.all(25.0),
+                                child: Center(
+                                  child: Text(
+                                    'Share',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 25,
+                                        color: TextColor,
+                                        fontFamily: 'MORFFont'),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      });
 }

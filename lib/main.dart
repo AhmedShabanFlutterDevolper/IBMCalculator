@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-import 'Colors.dart';
-import 'Home.dart';
+import 'style/Colors.dart';
+import 'moudels/home/Home.dart';
 
 void main() {
   runApp(const MyApp());

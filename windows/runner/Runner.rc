@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "bim" "\0"
+            VALUE "FileDescription", "BIM Clalculator" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "bim" "\0"
+            VALUE "InternalName", "BIM Clalculator" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
             VALUE "OriginalFilename", "bim.exe" "\0"
-            VALUE "ProductName", "bim" "\0"
+            VALUE "ProductName", "BIM Clalculator" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
